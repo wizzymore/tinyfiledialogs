@@ -1,6 +1,7 @@
 package tinyfiledialogs
 
 /*
+#cgo CFLAGS: -std=c89 -g3 -Wall -Wextra -Wdouble-promotion -Wconversion -Wno-sign-conversion -Wno-unused-parameter -Wno-unused-function -Wno-deprecated
 #include "tinyfiledialogs.h"
 #include <stdlib.h>
 */
