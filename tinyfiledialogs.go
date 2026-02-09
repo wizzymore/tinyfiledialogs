@@ -55,7 +55,7 @@ func OpenFileDialog(title string, defaultPathOrFile string, filePatterns []strin
 		path = C.GoString(result)
 	}
 
-	return path, tern(result != nil, true, false)
+	return path, result != nil
 }
 
 // SaveFileDialog opens a file selection dialog.
@@ -96,7 +96,7 @@ func SaveFileDialog(title string, defaultPathOrFile string, filePatterns []strin
 		path = C.GoString(result)
 	}
 
-	return path, tern(result != nil, true, false)
+	return path, result != nil
 }
 
 // title - the title of the dialog.
@@ -114,24 +114,7 @@ func SelectFolderDialog(title string, defaultPath string) (path string, ok bool)
 
 	if result != nil {
 		path = C.GoString(result)
-		path = path[:len(path)-1]
 	}
 
-	return path, tern(result != nil, true, false)
-}
-
-func SelectFolderDialogT(title string, defaultPath string) (path string, ok bool) {
-	aTitle := C.CString(title)
-	defer C.free(unsafe.Pointer(aTitle))
-
-	aDefaultPath := C.CString(defaultPath)
-	defer C.free(unsafe.Pointer(aDefaultPath))
-
-	result := C.tinyfd_selectFolderDialog(aTitle, aDefaultPath)
-
-	if result != nil {
-		path = C.GoString(result)
-	}
-
-	return path, tern(result != nil, true, false)
+	return path, result != nil
 }

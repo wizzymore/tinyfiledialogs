@@ -39,7 +39,7 @@ func main() {
 	homedir, err := os.UserHomeDir()
 	if err != nil {
 		fmt.Println("Could not get home dir")
-		return
+		os.Exit(1)
 	}
 
 	sel, ok = tinyfiledialogs.OpenFileDialog("Source Files", homedir+"/", []string{"*.go", "*.mod"}, "Go files", false)
